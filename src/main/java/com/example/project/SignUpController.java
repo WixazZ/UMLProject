@@ -45,6 +45,7 @@ public class SignUpController extends Controller {
         } else {
             // if all checks are passed, create new user
             Database.getInstance().createUser(username.getText(), password.getText());
+            changeScreenMenu(event);
         }
 
     }
