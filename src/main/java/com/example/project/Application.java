@@ -20,6 +20,7 @@ public class Application extends javafx.application.Application {
         stage.setScene(scene);
         stage.show();
         Database.getInstance();
+        User.getInstance();
     }
 
     public static void main(String[] args) {

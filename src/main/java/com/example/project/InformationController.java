@@ -56,6 +56,10 @@ public class InformationController extends Controller {
 
         // check if all fields are correct
         if (firstName.getText().matches("[a-zA-Z]+") && lastName.getText().matches("[a-zA-Z]+") && birthday.getText().matches("[0-9]{2}/[0-9]{2}/[0-9]{4}") && phoneNumber.getText().matches("[0-9]{3}-[0-9]{3}-[0-9]{4}")) {
+            User.getInstance().setFirstName(firstName.getText());
+            User.getInstance().setLastName(lastName.getText());
+            User.getInstance().setBirthday(birthday.getText());
+            User.getInstance().setPhone(phoneNumber.getText());
             onChangePageSignUp(event);
         }
     }
