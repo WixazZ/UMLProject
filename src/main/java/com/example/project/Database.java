@@ -59,25 +59,49 @@ public final class Database {
         }
     }
 
+    public boolean getElder(String username, String password) {
+        try {
+            String query = "SELECT Id_Elder FROM Users WHERE username = '" + username + "' AND password = '" + password + "'"; // Query to check if the user exists
+            ResultSet res = stmt.executeQuery(query); // Execute the query
+            if (res.next()) { // If the result is not empty
+                String queryElder = "SELECT * FROM Elder WHERE Id_Elder = " + res.getInt("Id_Elder"); // Query to get the elder
+                ResultSet resElder = stmt.executeQuery(queryElder); // Execute the query
+                if (resElder.next()) { // If the result is not empty
+                    User.getInstance().setId(resElder.getString("Id_Elder")); // Set the id
+                    User.getInstance().setFirstName(resElder.getString("Firstname")); // Set the Firstname
+                    User.getInstance().setLastName(resElder.getString("Lastname")); // Set the Lastname
+                    User.getInstance().setPhone(resElder.getString("Phone")); // Set the Phone
+                    return true; // Return true
+                }
+
+                return false; // Return
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false; // Return
+        }
+        return false;
+    }
+
     public void createUser(String username, String password){
 
-        String day = User.getInstance().getBirthday().substring(0, 1); // Get the year
-        String month = User.getInstance().getBirthday().substring(3, 4); // Get the year
+        String day = User.getInstance().getBirthday().substring(0, 2); // Get the year
+        String month = User.getInstance().getBirthday().substring(3, 5); // Get the year
         String year = User.getInstance().getBirthday().substring(6, 10); // Get the year
         String birthday = year + "-" + month + "-" + day; // Set the birthdate
 
         // create user with data of User class
         try {
             String queryElder = "insert into Elder (Firstname, Lastname, Phone, Birthday) values('"+User.getInstance().getFirstName()+"', '"+User.getInstance().getLastName()+"','"+User.getInstance().getPhone()+"', '"+birthday+"')";
-
             String queryID = "SELECT Id_Elder FROM Elder WHERE Phone = '"+User.getInstance().getPhone()+"'"; // Query to check if the user exists
 
             stmt.executeUpdate(queryElder);
 
             ResultSet res = stmt.executeQuery(queryID); // Execute the query
             if(res.next()){
-                String queryUsers = "insert into Users (Username, Password, id_Elder) values('"+username+"', '"+password+"', + '"+ res.getString("Id_Elder")+"')"; // Query to check if the user exists
-
+                String id_Elder = res.getString("Id_Elder");
+                String queryUsers = "insert into Users (Username, Password, id_Elder) values('"+username+"', '"+password+"', + '"+ id_Elder +"')"; // Query to check if the user exists
+                User.getInstance().setId(id_Elder);
                 stmt.executeUpdate(queryUsers);
             }
 
