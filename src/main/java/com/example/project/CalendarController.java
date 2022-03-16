@@ -1,5 +1,6 @@
 package com.example.project;
 
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableView;
@@ -16,5 +17,8 @@ public class CalendarController extends Controller implements Initializable {
 
         //TODO: fill data
         /*calendarview;*/
+    }
+
+    public void produceTextFile(ActionEvent actionEvent) {
     }
 }

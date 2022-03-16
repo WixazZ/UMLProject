@@ -6,6 +6,7 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Alert;
+import javafx.scene.input.MouseEvent;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -34,5 +35,13 @@ public class Controller {
         alert.setHeaderText(null); // set header
         alert.setContentText(message); // set content
         alert.showAndWait().ifPresent(response -> {}); // show alert and wait for response
+    }
+
+    public void retourMenu(MouseEvent mouseEvent) throws IOException { // change to menu scene
+        FXMLLoader fmxHome = new FXMLLoader(Application.class.getResource("menu-page.fxml")); // load menu scene
+        Scene sceneHome = new Scene(fmxHome.load()); // create scene
+        Stage stage = (Stage) ((Node) mouseEvent.getSource()).getScene().getWindow(); // get stage
+        stage.setScene(sceneHome); // set scene
+        stage.show(); // show scene
     }
 }
