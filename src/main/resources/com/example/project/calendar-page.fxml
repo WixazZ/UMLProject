@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.shape.Rectangle?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.HomeController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="81.0" stroke="BLACK" strokeType="INSIDE" width="500.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="81.0" layoutY="569.0" stroke="BLACK" strokeType="INSIDE" width="500.0" />
+      <ImageView fitHeight="44.0" fitWidth="219.0" layoutX="24.0" layoutY="19.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@logo-header.png" />
+         </image>
+      </ImageView>
+      <Label layoutX="158.0" layoutY="100.0" prefHeight="27.0" prefWidth="182.0" text="Your calendar">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="26.0" />
+         </font>
+      </Label>
+      <Button layoutX="322.0" layoutY="520.0" mnemonicParsing="false" onAction="#onChangePageSignUp" prefHeight="31.0" prefWidth="163.0" style="-fx-background-color: #0089FF;" text="Produce a text file" textFill="WHITE">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="16.0" />
+         </font>
+      </Button>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="59.0" layoutX="134.0" layoutY="153.0" stroke="DODGERBLUE" strokeType="INSIDE" width="219.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="287.0" layoutX="9.0" layoutY="223.0" stroke="DODGERBLUE" strokeType="INSIDE" width="482.0" />
+      <TableView fx:id="calendarview" layoutX="14.0" layoutY="274.0" prefHeight="232.0" prefWidth="471.0">
+        <columns>
+          <TableColumn prefWidth="140.00006675720215" text="Drug name" />
+          <TableColumn prefWidth="95.199951171875" text="Number of pill" />
+            <TableColumn prefWidth="92.79998779296875" text="Dose of pill" />
+            <TableColumn prefWidth="70.39996337890625" text="hour" />
+            <TableColumn prefWidth="71.20001220703125" text="Done" />
+        </columns>
+      </TableView>
+      <Label layoutX="187.0" layoutY="171.0" prefHeight="23.0" prefWidth="126.0" text="Today's date">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="20.0" />
+         </font>
+      </Label>
+      <Label layoutX="97.0" layoutY="223.0" text="The medications you need to take">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label layoutX="145.0" layoutY="245.0" text="with the time and dose">
+         <font>
+            <Font name="Arial Rounded MT Bold" size="18.0" />
+         </font>
+      </Label>
+   </children>
+</AnchorPane>
