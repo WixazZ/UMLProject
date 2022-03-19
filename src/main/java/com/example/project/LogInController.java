@@ -15,7 +15,7 @@ public class LogInController extends Controller {
     private TextField password;
 
     @FXML
-    private void onClickChangeMenu(ActionEvent event) throws IOException {
+    private void onClickChangeMenu(ActionEvent event) throws Exception {
         // check if password respect conditions
         // check if regex username is correct
         if (!username.getText().matches("^[a-zA-Z0-9]*$")) {

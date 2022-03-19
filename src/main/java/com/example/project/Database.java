@@ -1,5 +1,7 @@
 package com.example.project;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
 
 import java.sql.*;
@@ -22,11 +24,13 @@ public final class Database {
      */
     private static boolean success; // Boolean to check if the connection was successful
 
-    private Database() {
+    private Database() throws Exception{
         try {
-            String url = "jdbc:mysql://localhost/umlproject"; // URL for the database
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            String url = "jdbc:mysql://localhost:3306/"; // URL for the database
             con = DriverManager.getConnection(url,"root", "alexpara"); // Connection object PASSWORD and USERNAME to be modified
             stmt = con.createStatement(); // Statement object
+            stmt.executeUpdate("USE UMLProject"); // Execute the query
             setSuccess(true); // Set success to true
         } catch (SQLException e) { // If the connection is not successful
             e.printStackTrace(); // Print the error
@@ -35,9 +39,10 @@ public final class Database {
         }
     }
 
-    public static Database getInstance(){
-        if(instance == null)
+    public static Database getInstance() throws Exception {
+        if(instance == null){
             instance = new Database();
+        }
         return instance;
     }
 
@@ -81,6 +86,23 @@ public final class Database {
             return false; // Return
         }
         return false;
+    }
+
+    public ObservableList<CalendarMedicament> receiveDataCalendar(){
+        ObservableList<CalendarMedicament> data = FXCollections.observableArrayList(); // ObservableList object to store the data
+        try {
+            String query = "SELECT * FROM Prescription where IdElder = '"+ User.getInstance().getId()+"'"; // Query to get the calendar
+            ResultSet res = stmt.executeQuery(query); // Execute the query
+            while (res.next()) { // If the result is not empty
+                String queryMedicament = "SELECT Name FROM Medicament where Id_Medicament = '"+ res.getInt("Id_Medicament")+"'"; // Query to get the calendar
+                ResultSet resMedicament = stmt.executeQuery(queryMedicament); // Execute the query
+
+                data.add(new CalendarMedicament(resMedicament.getString("Name"), 1, res.getString("Dosage"), res.getString("DosingTimes"), Boolean.FALSE)); // Add the data to the ObservableList object
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return data;
     }
 
     public void createUser(String username, String password){

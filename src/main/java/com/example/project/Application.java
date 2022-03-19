@@ -19,7 +19,11 @@ public class Application extends javafx.application.Application {
         stage.setTitle("Health app");
         stage.setScene(scene);
         stage.show();
-        Database.getInstance();
+        try {
+            Database.getInstance();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         User.getInstance();
     }
 

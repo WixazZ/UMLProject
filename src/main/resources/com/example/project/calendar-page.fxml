@@ -10,7 +10,7 @@
 <?import javafx.scene.shape.Rectangle?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.HomeController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="650.0" prefWidth="500.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.project.CalendarController">
    <children>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="81.0" stroke="BLACK" strokeType="INSIDE" width="500.0" />
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="81.0" layoutY="569.0" stroke="BLACK" strokeType="INSIDE" width="500.0" />
@@ -33,11 +33,11 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="287.0" layoutX="9.0" layoutY="223.0" stroke="DODGERBLUE" strokeType="INSIDE" width="482.0" />
       <TableView fx:id="calendarview" layoutX="14.0" layoutY="274.0" prefHeight="232.0" prefWidth="471.0">
         <columns>
-          <TableColumn prefWidth="140.00006675720215" text="Drug name" />
-          <TableColumn prefWidth="95.199951171875" text="Number of pill" />
-            <TableColumn prefWidth="92.79998779296875" text="Dose of pill" />
-            <TableColumn prefWidth="70.39996337890625" text="hour" />
-            <TableColumn prefWidth="71.20001220703125" text="Done" />
+          <TableColumn fx:id="drug" prefWidth="140.00006675720215" text="Drug name" />
+          <TableColumn fx:id="numberPill" prefWidth="95.199951171875" text="Number of pill" />
+            <TableColumn fx:id="dosePill" prefWidth="92.79998779296875" text="Dose of pill" />
+            <TableColumn fx:id="hour" prefWidth="70.39996337890625" text="Hour" />
+            <TableColumn fx:id="done" prefWidth="71.20001220703125" text="Done" />
         </columns>
       </TableView>
       <Label layoutX="187.0" layoutY="171.0" prefHeight="23.0" prefWidth="126.0" text="Today's date">

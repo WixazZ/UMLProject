@@ -18,7 +18,7 @@ public class SignUpController extends Controller {
     private TextField rePassword;
 
     @FXML
-    private void onClickSignUp(ActionEvent event) throws IOException {
+    private void onClickSignUp(ActionEvent event) throws Exception {
         // check if regex username is correct
         if (!username.getText().matches("^[a-zA-Z0-9]*$")) {
             username.setText("");
