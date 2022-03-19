@@ -1,6 +1,7 @@
 package com.example.project;
 
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -8,7 +9,6 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
 import java.net.URL;
-import java.util.Calendar;
 import java.util.ResourceBundle;
 
 public class CalendarController extends Controller implements Initializable {
@@ -47,5 +47,8 @@ public class CalendarController extends Controller implements Initializable {
         done.setCellValueFactory(new PropertyValueFactory<>("Done")); // set cost of product in tableView
 
         calendarview.setItems(pill); // set list of product in tableView
+    }
+
+    public void produceTextFile(ActionEvent actionEvent) {
     }
 }

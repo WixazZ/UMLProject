@@ -8,7 +8,7 @@ import javafx.scene.control.TableView;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class EmergencyController extends Controller implements Initializable {
+public class ProfilController extends Controller implements Initializable {
     @FXML
     public Label lastNameEmergency;
 
