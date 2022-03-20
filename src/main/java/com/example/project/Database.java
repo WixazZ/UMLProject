@@ -3,6 +3,7 @@ package com.example.project;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import javafx.scene.control.CheckBox;
 
 import java.sql.*;
 
@@ -89,17 +90,48 @@ public final class Database {
     }
 
 
+    public ObservableList<HealthRecord> receiveDataHealthRecord(){
+        ObservableList<HealthRecord> healthRecords = FXCollections.observableArrayList();
+        try {
+            String query = "SELECT Id_Illnesses FROM Had where ID_Elder = '" + User.getInstance().getId() + "'";
+            ResultSet res = stmt.executeQuery(query);
+            Statement stmt2 = con.createStatement(); // Statement object
+            while (res.next()) {
+                String queryIllness = "SELECT Name, Details FROM Illnesses WHERE Id_Illnesses = '" + res.getInt("Id_Illnesses") + "'";
+                ResultSet resIllness = stmt2.executeQuery(queryIllness);
+                if (resIllness.next()) {
+                    healthRecords.add(new HealthRecord(resIllness.getString("Name"), resIllness.getString("Details")));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return healthRecords;
+    }
+
+    /*
+    public void sendDataDone(CalendarMedicament cm){
+        // send cm to database table CatchHours
+        try {
+            String query = "INSERT INTO CatchHours (ID_Elder, ID_Medicament, Date, Hour) VALUES (" + User.getInstance().getId() + ", " + cm.getIdMedicament() + ", '" + cm.getDate() + "', '" + cm.getHour() + "')";
+            stmt.executeUpdate(query);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+    }*/
     public ObservableList<CalendarMedicament> receiveDataCalendar(){
         ObservableList<CalendarMedicament> data = FXCollections.observableArrayList(); // ObservableList object to store the data
         try {
             String query = "SELECT * FROM Prescription where Id_Elder = '"+ User.getInstance().getId()+"'"; // Query to get the calendar
             ResultSet res = stmt.executeQuery(query); // Execute the query
             Statement stmt2 = con.createStatement(); // Statement object
+            int i = 0;
             while (res.next()) { // If the result is not empty
                 String queryMedicament = "SELECT Name FROM Medicament where Id_Medicament = '"+ res.getInt("Id_Medicament")+"'"; // Query to get the calendar
                 ResultSet resMedicament = stmt2.executeQuery(queryMedicament); // Execute the query
                 if (resMedicament.next()) { // If the result is not empty
-                    data.add(new CalendarMedicament(resMedicament.getString("Name"), 1, res.getString("Dosages"), res.getString("DosingTimes"), Boolean.FALSE)); // Add the data to the ObservableList object
+                    data.add(new CalendarMedicament(resMedicament.getString("Name"), 1, res.getString("Dosages"), res.getString("DosingTimes"), new CheckBox())); // Add the data to the ObservableList object
+                    i++;
                 }
 
             }

@@ -31,8 +31,8 @@
       </Label>
       <TableView fx:id="healthRecordView" layoutX="83.0" layoutY="189.0" prefHeight="318.0" prefWidth="334.0">
         <columns>
-          <TableColumn prefWidth="167.20001983642578" text="Date" />
-          <TableColumn prefWidth="166.39996337890625" text="Disease" />
+          <TableColumn fx:id="tName" prefWidth="167.20001983642578" text="Disease" />
+          <TableColumn fx:id="tDetails" prefWidth="166.39996337890625" text="Details" />
         </columns>
       </TableView>
       <ImageView fitHeight="42.0" fitWidth="22.0" layoutX="14.0" layoutY="23.0" onMouseClicked="#retourMenu" pickOnBounds="true" preserveRatio="true">

@@ -1,22 +1,67 @@
 package com.example.project;
 
-public record CalendarMedicament(String drug, int numberPill, String dosePill, String hour, Boolean done){
+import javafx.scene.control.CheckBox;
+
+import java.util.Objects;
+
+public final class CalendarMedicament {
+
+    private final String drug;
+    private final int numberPill;
+    private final String dosePill;
+    private final String hour;
+    public final CheckBox done;
+
+    public CalendarMedicament(String drug, int numberPill, String dosePill, String hour, CheckBox done) {
+        this.drug = drug;
+        this.numberPill = numberPill;
+        this.dosePill = dosePill;
+        this.hour = hour;
+        this.done = done;
+    }
 
     // getter
-    public String getDrug(){
+    public String getDrug() {
         return drug;
     }
-    public int getNumberPill(){
+
+    public int getNumberPill() {
         return numberPill;
     }
-    public String getDosePill(){
+
+    public String getDosePill() {
         return dosePill;
     }
-    public String getHour(){
+
+    public String getHour() {
         return hour;
     }
-    public Boolean getDone(){
+
+    public CheckBox getDone() {
         return done;
     }
+
+    public String drug() {
+        return drug;
+    }
+
+    public int numberPill() {
+        return numberPill;
+    }
+
+    public String dosePill() {
+        return dosePill;
+    }
+
+    public String hour() {
+        return hour;
+    }
+
+    public CheckBox done() {
+        return done;
+    }
+
+
+
 
 }

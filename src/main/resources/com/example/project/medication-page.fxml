@@ -26,12 +26,12 @@
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="351.0" layoutX="10.0" layoutY="171.0" stroke="DODGERBLUE" strokeType="INSIDE" width="482.0" />
       <TableView fx:id="medicationview" layoutX="19.0" layoutY="187.0" prefHeight="318.0" prefWidth="467.0">
         <columns>
-          <TableColumn prefWidth="79.19994926452637" text="Start date" />
-          <TableColumn prefWidth="80.80005645751953" text="Final date" />
-            <TableColumn minWidth="0.0" prefWidth="85.60003662109375" text="Sikness" />
-            <TableColumn prefWidth="79.199951171875" text="Medication" />
-            <TableColumn minWidth="0.0" prefWidth="65.60003662109375" text="Dose" />
-            <TableColumn minWidth="0.0" prefWidth="72.0" text="Hour" />
+          <TableColumn fx:id="startDate" prefWidth="79.19994926452637" text="Start date" />
+          <TableColumn fx:id="finalDate" prefWidth="80.80005645751953" text="Final date" />
+            <TableColumn fx:id="sickness" minWidth="0.0" prefWidth="85.60003662109375" text="Sickness" />
+            <TableColumn fx:id="medication" prefWidth="79.199951171875" text="Medication" />
+            <TableColumn fx:id="dose" minWidth="0.0" prefWidth="65.60003662109375" text="Dose" />
+            <TableColumn fx:id="hour" minWidth="0.0" prefWidth="72.0" text="Hour" />
         </columns>
       </TableView>
       <ImageView fitHeight="42.0" fitWidth="22.0" layoutX="14.0" layoutY="23.0" onMouseClicked="#retourMenu" pickOnBounds="true" preserveRatio="true">
