@@ -88,16 +88,20 @@ public final class Database {
         return false;
     }
 
+
     public ObservableList<CalendarMedicament> receiveDataCalendar(){
         ObservableList<CalendarMedicament> data = FXCollections.observableArrayList(); // ObservableList object to store the data
         try {
-            String query = "SELECT * FROM Prescription where IdElder = '"+ User.getInstance().getId()+"'"; // Query to get the calendar
+            String query = "SELECT * FROM Prescription where Id_Elder = '"+ User.getInstance().getId()+"'"; // Query to get the calendar
             ResultSet res = stmt.executeQuery(query); // Execute the query
+            Statement stmt2 = con.createStatement(); // Statement object
             while (res.next()) { // If the result is not empty
                 String queryMedicament = "SELECT Name FROM Medicament where Id_Medicament = '"+ res.getInt("Id_Medicament")+"'"; // Query to get the calendar
-                ResultSet resMedicament = stmt.executeQuery(queryMedicament); // Execute the query
+                ResultSet resMedicament = stmt2.executeQuery(queryMedicament); // Execute the query
+                if (resMedicament.next()) { // If the result is not empty
+                    data.add(new CalendarMedicament(resMedicament.getString("Name"), 1, res.getString("Dosages"), res.getString("DosingTimes"), Boolean.FALSE)); // Add the data to the ObservableList object
+                }
 
-                data.add(new CalendarMedicament(resMedicament.getString("Name"), 1, res.getString("Dosage"), res.getString("DosingTimes"), Boolean.FALSE)); // Add the data to the ObservableList object
             }
         } catch (SQLException e) {
             e.printStackTrace();

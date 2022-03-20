@@ -9,7 +9,8 @@ import java.util.ResourceBundle;
 
 public class HealthRecordController extends Controller implements Initializable {
     @FXML
-    public TableView<User> healthRecordview;
+    public TableView<User> healthRecordView;
+
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {

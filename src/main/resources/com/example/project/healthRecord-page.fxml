@@ -24,12 +24,12 @@
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="351.0" layoutX="45.0" layoutY="171.0" stroke="DODGERBLUE" strokeType="INSIDE" width="411.0" />
-      <Label fx:id="healthRecordview" layoutX="223.0" layoutY="231.0" text="Label" textFill="WHITE">
+      <Label layoutX="223.0" layoutY="231.0" text="Label" textFill="WHITE">
          <font>
             <Font name="Arial Rounded MT Bold" size="20.0" />
          </font>
       </Label>
-      <TableView layoutX="83.0" layoutY="189.0" prefHeight="318.0" prefWidth="334.0">
+      <TableView fx:id="healthRecordView" layoutX="83.0" layoutY="189.0" prefHeight="318.0" prefWidth="334.0">
         <columns>
           <TableColumn prefWidth="167.20001983642578" text="Date" />
           <TableColumn prefWidth="166.39996337890625" text="Disease" />

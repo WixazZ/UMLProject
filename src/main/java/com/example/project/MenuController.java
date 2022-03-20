@@ -9,7 +9,7 @@ public class MenuController extends Controller {
 
     @FXML
     public void onChangeProfile(ActionEvent event) throws IOException {
-        changeScreen(event, "emmergency-page.fxml");
+        changeScreen(event, "profil-page.fxml");
     }
 
     @FXML

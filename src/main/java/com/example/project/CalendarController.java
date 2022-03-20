@@ -16,19 +16,19 @@ public class CalendarController extends Controller implements Initializable {
     public TableView<CalendarMedicament> calendarview;
 
     @FXML
-    public TableColumn<Calendar, String> drug;
+    public TableColumn<CalendarMedicament, String> drug;
 
     @FXML
-    public TableColumn<Calendar, String> numberPill;
+    public TableColumn<CalendarMedicament, String> numberPill;
 
     @FXML
-    public TableColumn<Calendar, String> dosePill;
+    public TableColumn<CalendarMedicament, String> dosePill;
 
     @FXML
-    public TableColumn<Calendar, String> hour;
+    public TableColumn<CalendarMedicament, String> hour;
 
     @FXML
-    public TableColumn<Calendar, Boolean> done;
+    public TableColumn<CalendarMedicament, Boolean> done;
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
@@ -40,9 +40,9 @@ public class CalendarController extends Controller implements Initializable {
             e.printStackTrace();
         }
 
-        drug.setCellValueFactory(new PropertyValueFactory<>("Drug name")); // set id of product in tableView
-        numberPill.setCellValueFactory(new PropertyValueFactory<>("Number of pill")); // set id of product in tableView
-        dosePill.setCellValueFactory(new PropertyValueFactory<>("Dose of pill")); // set name of product in tableView
+        drug.setCellValueFactory(new PropertyValueFactory<>("drug")); // set id of product in tableView
+        numberPill.setCellValueFactory(new PropertyValueFactory<>("NumberPill")); // set id of product in tableView
+        dosePill.setCellValueFactory(new PropertyValueFactory<>("dosePill")); // set name of product in tableView
         hour.setCellValueFactory(new PropertyValueFactory<>("Hour")); // set cost of product in tableView
         done.setCellValueFactory(new PropertyValueFactory<>("Done")); // set cost of product in tableView
 

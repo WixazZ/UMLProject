@@ -26,7 +26,7 @@
                </font>
             </Button>
             <HBox prefHeight="21.0" prefWidth="290.0" />
-            <Button mnemonicParsing="false" onAction="#onChangeCalandar" prefHeight="26.0" prefWidth="290.0" style="-fx-background-color: #EDB2D8;" text="Calendar">
+            <Button mnemonicParsing="false" onAction="#onChangeCalendar" prefHeight="26.0" prefWidth="290.0" style="-fx-background-color: #EDB2D8;" text="Calendar">
                <font>
                   <Font name="Arial Rounded MT Bold" size="24.0" />
                </font>
