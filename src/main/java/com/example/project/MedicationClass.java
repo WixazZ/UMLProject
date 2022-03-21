@@ -7,18 +7,24 @@ public final class MedicationClass {
     private final String Name;
     private final String Dosage;
     private final String Hour;
+    private final String PrescriptionID;
 
-    public MedicationClass(String StartDate, String EndDate, String Name, String Dosage, String Hour) {
+    public MedicationClass(String PrescriptionID,String StartDate, String EndDate, String Name, String Dosage, String Hour) {
 
         this.StartDate = StartDate;
         this.EndDate = EndDate;
         this.Name = Name;
         this.Dosage = Dosage;
         this.Hour = Hour;
+        this.PrescriptionID = PrescriptionID;
     }
 
     public String getStartDate() {
         return StartDate;
+    }
+
+    public String getPrescriptionID() {
+        return PrescriptionID;
     }
 
     public String getEndDate() {

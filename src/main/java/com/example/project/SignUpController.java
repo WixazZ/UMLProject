@@ -25,21 +25,21 @@ public class SignUpController extends Controller {
             username.setPromptText("Username must be alphanumeric");
         }
         // check if password and re-password are the same
-        if (!password.getText().equals(rePassword.getText())) {
+        else if (!password.getText().equals(rePassword.getText())) {
             password.setText("");
             rePassword.setText("");
             password.setPromptText("Password and re-password must be the same");
             rePassword.setPromptText("Password and re-password must be the same");
         }
         // check if password is at least 8 characters long
-        if (password.getText().length() < 8) {
+        else if (password.getText().length() < 8) {
             password.setText("");
             rePassword.setText("");
             password.setPromptText("Password must be at least 8 characters long");
             rePassword.setPromptText("Password must be at least 8 characters long");
         }
         // check if username is not already taken
-        if (Database.getInstance().getUser(username.getText()) && username.getText().equals("")) {
+        else if (Database.getInstance().getUser(username.getText()) && username.getText().equals("")) {
             username.setText("");
             username.setPromptText("Username is already taken");
         } else {

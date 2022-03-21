@@ -27,9 +27,9 @@ public final class Database {
 
     private Database() throws Exception{
         try {
-            Class.forName("com.mysql.cj.jdbc.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             String url = "jdbc:mysql://localhost:3306/"; // URL for the database
-            con = DriverManager.getConnection(url,"root", "alexpara"); // Connection object PASSWORD and USERNAME to be modified
+            con = DriverManager.getConnection(url,"root", "0000"); // Connection object PASSWORD and USERNAME to be modified
             stmt = con.createStatement(); // Statement object
             stmt.executeUpdate("USE UMLProject"); // Execute the query
             setSuccess(true); // Set success to true
@@ -90,6 +90,7 @@ public final class Database {
     }
 
 
+
     public ObservableList<HealthRecord> receiveDataHealthRecord(){
         ObservableList<HealthRecord> healthRecords = FXCollections.observableArrayList();
         try {
@@ -109,13 +110,21 @@ public final class Database {
         return healthRecords;
     }
 
+    public void sendDoneConfirmation(String prescriptionID){
 
+        String confirmUpdate = "insert into catchhours (Date, HourSave, Take, Id_Prescription) values(DATE_FORMAT(curtime(),'%Y:%m:%d') ,DATE_FORMAT(curtime(),'%k:%i'), '1', '" + prescriptionID + "')";
+        try {
+            stmt.executeUpdate(confirmUpdate);
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
 
+    }
 
     public ObservableList<MedicationClass> receiveDataPrescriptionThread(){
         ObservableList<MedicationClass> prescriptions = FXCollections.observableArrayList();
         try {
-            String query = "SELECT * FROM Prescription where Id_Elder = '" + User.getInstance().getId() + "' and  DATE_FORMAT(DosingTimes,'%k:%i') = DATE_FORMAT(curtime(),'%k:%i')";
+            String query = "SELECT * FROM Prescription where Id_Elder = '" + User.getInstance().getId() + "' and  DATE_FORMAT(DosingTimes,'%k:%i') = DATE_FORMAT(curtime(),'%k:%i') and FirstDate <= curdate() and LastDate >= curdate()";
             ResultSet res = stmt.executeQuery(query);
             Statement stmt2 = con.createStatement(); // Statement object
             while (res.next()) {
@@ -123,7 +132,7 @@ public final class Database {
                 ResultSet resMedication = stmt2.executeQuery(queryMedication);
 
                 if (resMedication.next()) { // If the result is not empty
-                    prescriptions.add(new MedicationClass(res.getString("FirstDate"), res.getString("LastDate"), resMedication.getString("Name"), res.getString("Dosages"), res.getString("DosingTimes")));
+                    prescriptions.add(new MedicationClass(res.getString("Id_Prescription"), res.getString("FirstDate"), res.getString("LastDate"), resMedication.getString("Name"), res.getString("Dosages"), res.getString("DosingTimes")));
 
                 }
 
@@ -137,7 +146,7 @@ public final class Database {
     public ObservableList<MedicationClass> receiveDataPrescription(){
         ObservableList<MedicationClass> prescriptions = FXCollections.observableArrayList();
         try {
-            String query = "SELECT * FROM Prescription where Id_Elder = '" + User.getInstance().getId() + "'";
+            String query = "SELECT * FROM Prescription where Id_Elder = '" + User.getInstance().getId() + "' order by FirstDate, LastDate";
             ResultSet res = stmt.executeQuery(query);
             Statement stmt2 = con.createStatement(); // Statement object
             while (res.next()) {
@@ -145,7 +154,7 @@ public final class Database {
                 ResultSet resMedication = stmt2.executeQuery(queryMedication);
 
                 if (resMedication.next()) { // If the result is not empty
-                    prescriptions.add(new MedicationClass(res.getString("FirstDate"), res.getString("LastDate"), resMedication.getString("Name"), res.getString("Dosages"), res.getString("DosingTimes")));
+                    prescriptions.add(new MedicationClass(res.getString("Id_Prescription"), res.getString("FirstDate"), res.getString("LastDate"), resMedication.getString("Name"), res.getString("Dosages"), res.getString("DosingTimes")));
 
                 }
 
@@ -159,7 +168,7 @@ public final class Database {
     public ObservableList<CalendarMedicament> receiveDataCalendar(){
         ObservableList<CalendarMedicament> data = FXCollections.observableArrayList(); // ObservableList object to store the data
         try {
-            String query = "SELECT * FROM Prescription where Id_Elder = '"+ User.getInstance().getId()+"'"; // Query to get the calendar
+            String query = "SELECT * FROM Prescription where Id_Elder = '"+ User.getInstance().getId()+"'  and FirstDate <= curdate() and LastDate >= curdate()"; // Query to get the calendar
             ResultSet res = stmt.executeQuery(query); // Execute the query
             Statement stmt2 = con.createStatement(); // Statement object
             int i = 0;
@@ -167,10 +176,19 @@ public final class Database {
                 String queryMedicament = "SELECT Name FROM Medicament where Id_Medicament = '"+ res.getInt("Id_Medicament")+"'"; // Query to get the calendar
                 ResultSet resMedicament = stmt2.executeQuery(queryMedicament); // Execute the query
                 if (resMedicament.next()) { // If the result is not empty
-                    data.add(new CalendarMedicament(resMedicament.getString("Name"), 1, res.getString("Dosages"), res.getString("DosingTimes"), new CheckBox())); // Add the data to the ObservableList object
+                    boolean b = false;
+                    String query2 = "SELECT * FROM catchhours where Id_Prescription = '"+ res.getString("Id_Prescription")+"' and DATE_FORMAT(curtime(),'%Y:%m:%d') = DATE_FORMAT(Date,'%Y:%m:%d')"; // Query to get the calendar
+                    Statement stmt3 = con.createStatement(); // Statement object
+                    ResultSet res2  = stmt3.executeQuery(query2); // Execute the query
+                    if(res2.next()){
+                        b = true;
+                    }
+                    CheckBox c = new CheckBox();
+                    c.setSelected(b);
+                    c.setDisable(b);
+                    data.add(new CalendarMedicament(res.getString("Id_Prescription"), resMedicament.getString("Name"), 1, res.getString("Dosages"), res.getString("DosingTimes"), c)); // Add the data to the ObservableList object
                     i++;
                 }
-
             }
         } catch (SQLException e) {
             e.printStackTrace();

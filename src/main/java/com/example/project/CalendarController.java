@@ -51,6 +51,11 @@ public class CalendarController extends Controller implements Initializable {
             pill.get(finalI).done.setOnAction(event -> {
 
                 pill.get(finalI).done.setDisable(true);
+                try {
+                    Database.getInstance().sendDoneConfirmation(pill.get(finalI).getPrescriptionID());
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
                 calendarview.setItems(pill); // set list of product in tableView
             });
 
