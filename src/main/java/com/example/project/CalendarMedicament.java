@@ -20,7 +20,6 @@ public final class CalendarMedicament {
         this.done = done;
     }
 
-    // getter
     public String getDrug() {
         return drug;
     }

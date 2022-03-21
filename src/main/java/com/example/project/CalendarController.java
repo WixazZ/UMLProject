@@ -45,9 +45,6 @@ public class CalendarController extends Controller implements Initializable {
             e.printStackTrace();
         }
 
-
-
-
         assert pill != null;
         for (int i = 0; i < pill.size(); i++) {
             int finalI = i;

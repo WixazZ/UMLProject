@@ -109,16 +109,53 @@ public final class Database {
         return healthRecords;
     }
 
-    /*
-    public void sendDataDone(CalendarMedicament cm){
-        // send cm to database table CatchHours
+
+
+
+    public ObservableList<MedicationClass> receiveDataPrescriptionThread(){
+        ObservableList<MedicationClass> prescriptions = FXCollections.observableArrayList();
         try {
-            String query = "INSERT INTO CatchHours (ID_Elder, ID_Medicament, Date, Hour) VALUES (" + User.getInstance().getId() + ", " + cm.getIdMedicament() + ", '" + cm.getDate() + "', '" + cm.getHour() + "')";
-            stmt.executeUpdate(query);
+            String query = "SELECT * FROM Prescription where Id_Elder = '" + User.getInstance().getId() + "' and  DATE_FORMAT(DosingTimes,'%k:%i') = DATE_FORMAT(curtime(),'%k:%i')";
+            ResultSet res = stmt.executeQuery(query);
+            Statement stmt2 = con.createStatement(); // Statement object
+            while (res.next()) {
+                String queryMedication = "SELECT Name FROM Medicament WHERE Id_Medicament = '" + res.getInt("Id_Medicament") + "'";
+                ResultSet resMedication = stmt2.executeQuery(queryMedication);
+
+                if (resMedication.next()) { // If the result is not empty
+                    prescriptions.add(new MedicationClass(res.getString("FirstDate"), res.getString("LastDate"), resMedication.getString("Name"), res.getString("Dosages"), res.getString("DosingTimes")));
+
+                }
+
+            }
         } catch (SQLException e) {
             e.printStackTrace();
         }
-    }*/
+        return prescriptions;
+    }
+
+    public ObservableList<MedicationClass> receiveDataPrescription(){
+        ObservableList<MedicationClass> prescriptions = FXCollections.observableArrayList();
+        try {
+            String query = "SELECT * FROM Prescription where Id_Elder = '" + User.getInstance().getId() + "'";
+            ResultSet res = stmt.executeQuery(query);
+            Statement stmt2 = con.createStatement(); // Statement object
+            while (res.next()) {
+                String queryMedication = "SELECT Name FROM Medicament WHERE Id_Medicament = '" + res.getInt("Id_Medicament") + "'";
+                ResultSet resMedication = stmt2.executeQuery(queryMedication);
+
+                if (resMedication.next()) { // If the result is not empty
+                    prescriptions.add(new MedicationClass(res.getString("FirstDate"), res.getString("LastDate"), resMedication.getString("Name"), res.getString("Dosages"), res.getString("DosingTimes")));
+
+                }
+
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return prescriptions;
+    }
+
     public ObservableList<CalendarMedicament> receiveDataCalendar(){
         ObservableList<CalendarMedicament> data = FXCollections.observableArrayList(); // ObservableList object to store the data
         try {

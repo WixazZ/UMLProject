@@ -1,26 +1,40 @@
 package com.example.project;
 
-import javafx.application.Application;
-import javafx.stage.Stage;
+public final class MedicationClass {
 
-public class MedicationClass {
+    private final String StartDate;
+    private final String EndDate;
+    private final String Name;
+    private final String Dosage;
+    private final String Hour;
 
-    private String StartDate;
-    private String EndDate;
-    private String Sikness;
-    private String MedicationName;
-    private String Dosage;
-    private String Hour;
-
-    public MedicationClass(String StartDate, String EndDate, String Sikness, String MedicationName, String Dosage, String Hour) {
+    public MedicationClass(String StartDate, String EndDate, String Name, String Dosage, String Hour) {
 
         this.StartDate = StartDate;
         this.EndDate = EndDate;
-        this.Sikness = Sikness;
-        this.MedicationName = MedicationName;
+        this.Name = Name;
         this.Dosage = Dosage;
         this.Hour = Hour;
     }
 
+    public String getStartDate() {
+        return StartDate;
+    }
 
+    public String getEndDate() {
+        return EndDate;
+    }
+
+
+    public String getName() {
+        return Name;
+    }
+
+    public String getDosage() {
+        return Dosage;
+    }
+
+    public String getHour() {
+        return Hour;
+    }
 }

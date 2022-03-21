@@ -25,6 +25,11 @@ public class Application extends javafx.application.Application {
             e.printStackTrace();
         }
         User.getInstance();
+
+
+        Thread thread = new Thread(new NotifManager());
+        thread.start();
+
     }
 
     public static void main(String[] args) {

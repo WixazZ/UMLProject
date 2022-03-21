@@ -1,5 +1,6 @@
 package com.example.project;
 
+import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -14,11 +15,13 @@ import java.io.IOException;
 public class Controller {
 
     @FXML
-    protected void changeScreen(ActionEvent event, String page) throws IOException { // change to home scene
+    protected static void changeScreen(ActionEvent event, String page) throws IOException { // change to home scene
         FXMLLoader fmxHome = new FXMLLoader(Application.class.getResource(page)); // load home scene
         Scene sceneHome = new Scene(fmxHome.load()); // create scene
+        Platform.setImplicitExit(false);
         Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow(); // get stage
         stage.setScene(sceneHome); // set scene
+
         stage.show(); // show scene
     }
 
