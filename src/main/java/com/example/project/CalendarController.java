@@ -9,7 +9,12 @@ import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 
+import java.io.File;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.net.URL;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class CalendarController extends Controller implements Initializable {
@@ -72,6 +77,32 @@ public class CalendarController extends Controller implements Initializable {
     }
 
     public void produceTextFile(ActionEvent actionEvent) {
+        actionEvent.consume();
+        ObservableList<MedicationClass> prescriptions = null;
+        try {
+            prescriptions = Database.getInstance().receiveDataPrescription();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy-MM-dd-HH-mm-ss");
+        LocalDateTime now = LocalDateTime.now();
+        String FileName = "MedicalHistory"+ dtf.format(now) +".txt";
+        File report = new File(FileName);
+        try {
+            report.createNewFile();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        try {
+            FileWriter myWriter = new FileWriter(FileName);
+            myWriter.write("Medical history of elder n°" + User.getInstance().getId() + " :\n\n");
+            for (MedicationClass prescription : prescriptions) {
+                myWriter.write("Prescription - From " + prescription.getStartDate()+" to " + prescription.getEndDate() + ", " + prescription.getDosage() + " of " + prescription.getName()+" at " + prescription.getHour() + " .\n");
+            }
+            myWriter.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
 
