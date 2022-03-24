@@ -38,6 +38,6 @@ public class LogInController extends Controller {
 
     @FXML
     private void onClickChangeSignUp(ActionEvent event) throws IOException {
-        changeScreen(event, "signup-page.fxml");
+        changeScreen(event, "information-page.fxml");
     }
 }

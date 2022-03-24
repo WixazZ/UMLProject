@@ -22,13 +22,13 @@
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="WHITE" height="351.0" layoutX="45.0" layoutY="171.0" stroke="DODGERBLUE" strokeType="INSIDE" width="411.0" />
-      <Label fx:id="nameDoctorPage" layoutX="227.0" layoutY="182.0" text="label">
+      <Label fx:id="nameDoctorPage" layoutX="137.0" layoutY="182.0" prefHeight="23.0" prefWidth="322.0" text="Doctor Robert DENOUS">
          <font>
             <Font name="Arial Rounded MT Bold" size="20.0" />
          </font>
       </Label>
       <Rectangle arcHeight="5.0" arcWidth="5.0" fill="DODGERBLUE" height="42.0" layoutX="105.0" layoutY="222.0" stroke="BLACK" strokeType="INSIDE" width="292.0" />
-      <Label fx:id="specialityDoctorPage" layoutX="223.0" layoutY="231.0" text="Label" textFill="WHITE">
+      <Label fx:id="specialityDoctorPage" layoutX="185.0" layoutY="231.0" prefHeight="23.0" prefWidth="169.0" text="GENERALIST" textFill="WHITE">
          <font>
             <Font name="Arial Rounded MT Bold" size="20.0" />
          </font>
@@ -38,7 +38,7 @@
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="adressDoctorPage" layoutX="227.0" layoutY="314.0" text="Label">
+      <Label fx:id="adressDoctorPage" layoutX="72.0" layoutY="314.0" prefHeight="22.0" prefWidth="500.0" text="750 Avenue Saint Catherine QC,Montreal">
          <font>
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
@@ -48,7 +48,7 @@
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>
       </Label>
-      <Label fx:id="phoneDoctorPage" layoutX="227.0" layoutY="389.0" text="Label">
+      <Label fx:id="phoneDoctorPage" layoutX="188.0" layoutY="390.0" text="(481)236-5963">
          <font>
             <Font name="Arial Rounded MT Bold" size="18.0" />
          </font>

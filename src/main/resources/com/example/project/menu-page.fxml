@@ -20,7 +20,7 @@
       </ImageView>
       <VBox layoutX="131.0" layoutY="171.0" prefHeight="307.0" prefWidth="237.0">
          <children>
-            <Button mnemonicParsing="false" onAction="#onChangeProfile" prefHeight="26.0" prefWidth="290.0" style="-fx-background-color: #EDB2D8;" text="Profile">
+            <Button mnemonicParsing="false" onAction="#onChangeProfile" prefHeight="26.0" prefWidth="290.0" style="-fx-background-color: #EDB2D8;" text="Emergency">
                <font>
                   <Font name="Arial Rounded MT Bold" size="24.0" />
                </font>

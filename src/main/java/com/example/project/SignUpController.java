@@ -50,6 +50,10 @@ public class SignUpController extends Controller {
 
     }
 
+    public void changeScreenSignin(ActionEvent event) throws IOException {
+        changeScreen(event, "login-page.fxml");
+    }
+
     public void changeScreenMenu(ActionEvent event) throws IOException {
         changeScreen(event, "menu-page.fxml");
     }
